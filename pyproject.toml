@@ -1,7 +1,7 @@
 [project]
 name = "folderingimagebycaptioning-fastapi-backend-restapi"
 version = "0.1.0"
-description = "Add your description here"
+description = "FastAPI backend for AI-powered image categorization using ResNet50+LSTM. Automatically organizes images into folders based on generated captions with real-time progress tracking and ZIP export."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
