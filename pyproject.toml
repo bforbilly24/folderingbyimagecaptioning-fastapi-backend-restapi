@@ -1,0 +1,18 @@
+[project]
+name = "folderingimagebycaptioning-fastapi-backend-restapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.110.0",
+    "uvicorn==0.29.0",
+    "python-multipart==0.0.9",
+    "pillow==10.2.0",
+    "openpyxl==3.1.2",
+    "tensorflow==2.15.0",
+    "keras-preprocessing==1.1.2",
+    "numpy==1.26.4",
+    "h5py==3.13.0",
+    "nltk>=3.9.1",
+]

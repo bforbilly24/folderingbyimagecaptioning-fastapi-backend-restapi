@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./folderisasi:/app/folderisasi
+      - ./src/app/ml_models:/app/src/app/ml_models
+    environment:
+      - PYTHONPATH=/app
+      - UPLOAD_DIR=uploads
+      - OUTPUT_DIR=folderisasi
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy (nginx) for production
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     - api
+  #   restart: unless-stopped
+
+networks:
+  default:
+    name: image-foldering-network
