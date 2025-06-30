@@ -1,10 +1,14 @@
+#  src/app/models/ImageModel.py
 from pydantic import BaseModel
 from typing import List, Optional, Union
+
 
 class ImageData(BaseModel):
     filename: str
     caption: str
     category: str
+    image_path: Optional[str] = None
+
 
 class ImageCategorization(BaseModel):
     filename: str
@@ -12,6 +16,8 @@ class ImageCategorization(BaseModel):
     category: str
     cosine_similarity: float
     bleu_score: float
+    image_path: Optional[str] = None
+
 
 class UploadResponse(BaseModel):
     message: str
@@ -19,15 +25,18 @@ class UploadResponse(BaseModel):
     processed_count: int
     spreadsheet_data: List[ImageCategorization]
 
+
 class AsyncResponse(BaseModel):
     task_id: str
     message: str
 
+
 class ProcessingStep(BaseModel):
     step_id: int
     text: str
-    status: str  # "pending", "processing", "completed", "error"
+    status: str
     timestamp: Optional[str] = None
+
 
 class ProcessingProgress(BaseModel):
     task_id: str
@@ -38,5 +47,5 @@ class ProcessingProgress(BaseModel):
     result: Optional[UploadResponse] = None
     error: Optional[str] = None
 
-# Union type for flexible response
+
 APIResponse = Union[UploadResponse, AsyncResponse]
